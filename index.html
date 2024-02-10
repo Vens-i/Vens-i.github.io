@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/images/heart.png" type="image/x-icon">
+    <title>Will You Be My Valentine?</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.2/themes/smoothness/jquery-ui.css">
+    
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #e79dea;
+            color: #fff;
+        }
+        .btn-no {
+            transition: 1s;
+            pointer-events: none;
+        }
+        
+        h1 {
+            font-size: 3rem;
+            font-weight: 700;
+        }
+        .corner-div {
+        position: fixed;
+        right: 0;
+        bottom: 0;
+        width: 100%; /* Adjust as needed */
+         /* Adjust as needed */
+    }
+    </style>
+</head>
+<body>
+    <div class="d-flex flex-column">
+        <div class="row">
+            <div class="col col-6 text-center justify-content-center">
+                <img height="150px" width="150px" src="images/kiss.gif" alt="heart">
+            </div>
+            <div class="col col-6 text-center justify-content-center" id="yes-gif">
+                <img height="150px" width="150px" src="images/recieve.gif" alt="heart">
+            </div>
+        </div>
+        
+        <div class="text-center">
+            <h1 id="question-answer">Will You Be My Valentine?</h1>
+            <button class="btn btn-info btn-lg" id="yes-btn">Yes</button>
+            <button class="btn btn-warning btn-lg btn-no" id="btn-no">No</button>
+        </div>
+    </div>
+    
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>    
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script>
+        $('#yes-gif').hide();
+
+        $('#yes-btn').click(function() {
+            $('#yes-gif').show();
+            $('.btn').hide();
+            $('#question-answer').text('Ehhhhhhhhhh! I Love You!!');
+        });
+
+        var bounceTime = 300; // Initial bounce time
+
+        $(document).click(function(e) {
+            if(e.target.id !== 'yes-btn') {
+                $('#yes-btn').effect('bounce', {times: 3}, bounceTime);
+                bounceTime += 100; // Increase bounce time by 100ms
+            }
+        });
+        
+        const noButton = document.querySelector('.btn-no');
+        noButton.style.position = 'absolute'; // Make sure the button can be moved
+
+        function moveButton() {
+            const x = Math.random() * (window.innerWidth - noButton.offsetWidth);
+            const y = Math.random() * (window.innerHeight - noButton.offsetHeight);
+            noButton.style.left = `${x}px`;
+            noButton.style.top = `${y}px`;
+        }
+
+        moveButton(); // Move the button immediately on load
+        setInterval(moveButton, 200); // Then move it every .3 seconds
+    </script>
+</body>
+</html>
